@@ -16,25 +16,53 @@ class DoubleLinkedList:
         return self.__count == 0
 
     def add(self, data):
-        pass
+        node = Node(data)
+        if self.is_empty():
+            self.__head = node
+            self.__tail = node
+        else:
+            self.__tail.next = node
+            node.prev = self.__tail
+            self.__tail = node
+        self.__count += 1
+
 
     def add_head(self, data):
-        pass
+        node = Node(data)
+        if not self.is_empty():
+            node.next = self.__head
+            self.__head.prev = node
+        else:
+            self.__tail = node
+        self.__head = node
+        self.__count += 1
 
-    def pop(self):
-        pass
+
+    def pop(self, index: int):
+        """удаляет элемент по индексу, индексация с 1го"""
+        if index >= self.__count or index <= 0:  return None
+        iter = self.__head
+        for i in range(index-1):
+            iter = iter.next
+        iter.prev.next = iter.next
+        self.__count -= 1
+        return iter
+
 
     def pop_head(self):
+        """удалить с начала"""
+
+    def remove(self, elem):
+        """удаляет первое вхождение элемента"""
         pass
 
-    def pop_index(self):
-        pass
-
-    def insert(self):
+    def insert(self, index, elem):
+        """вставляет элемент по индексу"""
         pass
 
     def __get_count(self):
         return self.__count
 
     def search(self, index):
+        """ищет элемент по индексу"""
         pass

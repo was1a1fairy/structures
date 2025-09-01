@@ -46,7 +46,7 @@ class Stack:
     def pop(self):
         """
         возвращает верхний элемент, удаляя его из стека
-        :return: ValueError or верхний элемент
+        :return: верхний элемент
         """
         if self.is_empty():
             return None
