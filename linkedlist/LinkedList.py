@@ -63,10 +63,18 @@ class LinkedList:
         iter.next = node
 
   
-    def count(elem):
-      pass
+    def count(self, elem):
+        c = 0
+        iter = self.__head
+        while iter.next is not None:
+            if iter.data == elem:
+                c += 1
+            iter = iter.next
+        if iter.data == elem:
+            c += 1
+        return c
 
-  
+
     def remove(self, elem):
         """
         удаляет элементы, соответствующие переданному значению
@@ -77,6 +85,7 @@ class LinkedList:
                 iter.next = iter.next.next
                 self.__count -= 1
             iter = iter.next
+
 
     def clear_all(self):
         self.__count = 0
