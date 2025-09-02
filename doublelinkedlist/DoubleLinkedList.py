@@ -51,18 +51,40 @@ class DoubleLinkedList:
 
     def pop_head(self):
         """удалить с начала"""
-
+        self.__head = self.__head.next
+        self.__head.prev = None
+        self.__count -= 1
+    
+    
     def remove(self, elem):
         """удаляет первое вхождение элемента"""
-        pass
-
+        iter = self.__head
+        while iter is not None:
+            if iter.data == elem:
+                iter.prev.next = iter.next
+                return
+            iter = iter.next
+        self.__count -= 1 
+        
+    
     def insert(self, index, elem):
         """вставляет элемент по индексу"""
-        pass
+        node = Node(elem)
+        iter = self.__head
+        for i in range(index-2):
+            iter = iter.next
+        node.next = iter.next
+        node.prev = iter
+        iter.next.prev = node
+        iter.next = node
+        self.__count += 1
 
     def __get_count(self):
         return self.__count
 
     def search(self, index):
-        """ищет элемент по индексу"""
-        pass
+        """ищет элемент по индексу и возвращает его(ноду)"""
+        iter = self.__head
+        for i in range(index-2):
+            iter = iter.next
+        return iter
